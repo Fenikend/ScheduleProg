@@ -1,0 +1,48 @@
+﻿@model ScheduleProg.Models.Pare
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Pare</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Group_Id" class="control-label"></label>
+                <select asp-for="Group_Id" class ="form-control" asp-items="ViewBag.Group_Id"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Subject_Id" class="control-label"></label>
+                <select asp-for="Subject_Id" class ="form-control" asp-items="ViewBag.Subject_Id"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Semester_Id" class="control-label"></label>
+                <select asp-for="Semester_Id" class ="form-control" asp-items="ViewBag.Semester_Id"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Teacher_Id" class="control-label"></label>
+                <select asp-for="Teacher_Id" class ="form-control" asp-items="ViewBag.Teacher_Id"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pair_Time_Id" class="control-label"></label>
+                <select asp-for="Pair_Time_Id" class ="form-control" asp-items="ViewBag.Pair_Time_Id"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
