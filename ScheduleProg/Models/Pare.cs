@@ -13,15 +13,15 @@ namespace ScheduleProg.Models
 
         public int Pair_Time_Id { get; set; }
 
-      
+        [ValidateNever]
         public Semester Semester  { get; set; }
-
+        [ValidateNever]
         public List<PareSubgroup> PareSubgroups { get; set; }
-
+        [ValidateNever]
         public Subject Subject { get; set; }
-
+        [ValidateNever]
         public Teacher Teacher{ get; set; }
-
+        [ValidateNever]
         public PairTime PairTime{ get; set; }
     }
 }

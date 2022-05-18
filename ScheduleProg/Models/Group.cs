@@ -10,9 +10,10 @@ namespace ScheduleProg.Models
         public string Group_Name{ get; set; }
 
         public int Potok_Id{ get; set; }
-
+        [ValidateNever]
         public Potok Potok { get; set; }
 
+        [ValidateNever]
 
         public List<Subgroup> Subgroups { get; set; }
     }

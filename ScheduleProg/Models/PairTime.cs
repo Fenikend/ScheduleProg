@@ -8,7 +8,7 @@ namespace ScheduleProg.Models
         public string Begin_Time{ get; set; }
 
         public string End_Time { get; set; }
-
+        [ValidateNever]
         public List<Pare> Pares { get; set; }
 
     }

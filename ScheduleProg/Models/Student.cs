@@ -10,7 +10,7 @@ namespace ScheduleProg.Models
         public string Last_Name { get; set; }
 
         public int Subgroup_Id { get; set; }
-
+        [ValidateNever]
         public Subgroup Subgroup { get; set; }
         /*public int User_Id{ get; set; }*/
 

@@ -102,5 +102,7 @@ namespace ScheduleProg.Data
 
 
         }
+
+        public DbSet<ScheduleProg.Models.Subject>? Subject { get; set; }
     }
 }

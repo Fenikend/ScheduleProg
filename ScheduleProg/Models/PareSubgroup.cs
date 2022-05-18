@@ -4,9 +4,12 @@ namespace ScheduleProg.Models
     public class PareSubgroup
     {
         public int Pare_Id { get; set; }
-        public Pare Pare { get; set; }
+       
 
         public int Subgroup_Id{ get; set; }
+        [ValidateNever]
+        public Pare Pare { get; set; }
+        [ValidateNever]
         public Subgroup Subgroup { get; set; }
     }
 }
