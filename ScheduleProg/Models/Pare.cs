@@ -1,4 +1,5 @@
-﻿namespace ScheduleProg.Models
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+namespace ScheduleProg.Models
 {
     public class Pare
     {
@@ -15,7 +16,7 @@
       
         public Semester Semester  { get; set; }
 
-        public Group Group { get; set; }
+        public List<PareSubgroup> PareSubgroups { get; set; }
 
         public Subject Subject { get; set; }
 

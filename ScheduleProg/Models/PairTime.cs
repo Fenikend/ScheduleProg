@@ -1,4 +1,5 @@
-﻿namespace ScheduleProg.Models
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+namespace ScheduleProg.Models
 {
     public class PairTime
     {

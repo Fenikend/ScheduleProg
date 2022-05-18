@@ -9,9 +9,10 @@ namespace ScheduleProg.Models
 
         public string Last_Name { get; set; }
 
-        public int Group_Id { get; set; }
+        public int Subgroup_Id { get; set; }
 
-        public int User_Id{ get; set; }
+        public Subgroup Subgroup { get; set; }
+        /*public int User_Id{ get; set; }*/
 
     }
 }

@@ -1,4 +1,5 @@
-﻿namespace ScheduleProg.Models
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+namespace ScheduleProg.Models
 {
     public class Semester
     {
@@ -9,5 +10,6 @@
         public DateTime End_Date { get; set; }
 
         public List<Pare> Pares { get; set; }
+
     }
 }

@@ -15,6 +15,11 @@ namespace ScheduleProg.Data
 
         public DbSet<Teacher> Teachers { get; set; }
 
+        public DbSet<Subgroup> Subgroups{ get; set; }
+
+        public DbSet<PareSubgroup> PareSubgroups { get; set; } 
+
+        public DbSet<Potok> Potoks { get; set; }
 
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -23,28 +28,73 @@ namespace ScheduleProg.Data
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
-        {
+        {  /*b*/
             base.OnModelCreating(builder);
             builder.Entity<Semester>()
             .HasMany<Pare>(semester => semester.Pares)
             .WithOne(pare => pare.Semester)
             .HasForeignKey(pare => pare.Semester_Id);
-            builder.Entity<Group>()
-           .HasMany<Pare>(group => group.Pares)
-           .WithOne(pare => pare.Group)
-           .HasForeignKey(pare => pare.Group_Id);
+            /*e*/
+            /*  builder.Entity<Group>()
+             .HasMany<Pare>(group => group.Pares)
+             .WithOne(pare => pare.Group)
+             .HasForeignKey(pare => pare.Group_Id);*/
+
+            /*b*/
             builder.Entity<Subject>()
-          .HasMany<Pare>(group => group.Pares)
-          .WithOne(pare => pare.Subject)
-          .HasForeignKey(pare => pare.Subject_Id);
+          .HasMany<Pare>(s => s.Pares)
+          .WithOne(p => p.Subject)
+          .HasForeignKey(p => p.Subject_Id);
+            /*e*/
+
+            /*b*/
             builder.Entity<Teacher>()
-          .HasMany<Pare>(group => group.Pares)
+          .HasMany<Pare>(teacher => teacher.Pares)
           .WithOne(pare => pare.Teacher)
           .HasForeignKey(pare => pare.Teacher_Id);
+            /*e*/
+
+            /*b*/
             builder.Entity<PairTime>()
-          .HasMany<Pare>(group => group.Pares)
+          .HasMany<Pare>(pairtime => pairtime.Pares)
           .WithOne(pare => pare.PairTime)
           .HasForeignKey(pare => pare.Pair_Time_Id);
+            /*e*/
+
+            /*b*/
+            builder.Entity<PareSubgroup>()
+          .HasOne<Pare>(ps => ps.Pare)
+          .WithMany(p=> p.PareSubgroups)
+          .HasForeignKey(ps => ps.Pare_Id);
+            /*e*/
+
+            /*Many-to-Many */
+            builder.Entity<PareSubgroup>().HasKey(ps => new { ps.Pare_Id, ps.Subgroup_Id });
+           builder.Entity<PareSubgroup>()
+          .HasOne<Subgroup>(ps => ps.Subgroup)
+          .WithMany(s => s.PareSubgroups)
+          .HasForeignKey(ps => ps.Subgroup_Id);
+           builder.Entity<Potok>()
+          .HasMany<Group>(g=>g.Groups)
+          .WithOne(p=>p.Potok)
+          .HasForeignKey(g=>g.Potok_Id);
+            /*e*/
+
+            /*b*/
+            builder.Entity<Group>()
+            .HasMany<Subgroup>(s=>s.Subgroups)
+            .WithOne(g=>g.Group)
+            .HasForeignKey(g=>g.Group_Id);
+            /*e*/
+
+            /*b*/
+            builder.Entity<Subgroup>()
+            .HasMany<Student>(s => s.Students)
+            .WithOne(g => g.Subgroup)
+            .HasForeignKey(g => g.Subgroup_Id);
+
+
+
 
 
 
