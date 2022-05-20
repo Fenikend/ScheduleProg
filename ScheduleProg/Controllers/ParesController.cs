@@ -22,9 +22,17 @@ namespace ScheduleProg.Controllers
         // GET: Pares
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Schedules.Include(p => p.PairTime).Include(p => p.Semester).Include(p => p.Subject).Include(p => p.Teacher);
-            return View(await applicationDbContext.ToListAsync());
+            var applicationDbContext = _context.Schedules
+                       .Include(p => p.PairTime)
+                       .Include(p => p.Semester)
+                       .Include(p => p.Subject)
+                       .Include(p => p.Teacher);
+                //.Where(p=>p.Week_Day=="monday");
+                
+            var p = applicationDbContext.ToList();
+            return View(p);
         }
+
 
         // GET: Pares/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -53,7 +61,7 @@ namespace ScheduleProg.Controllers
         {
             ViewData["Pair_Time_Id"] = new SelectList(_context.PairTimes, "Id", "Id");
             ViewData["Semester_Id"] = new SelectList(_context.Semesters, "Id", "Id");
-            ViewData["Subject_Id"] = new SelectList(_context.Set<Subject>(), "Id", "Id");
+            ViewData["Subject_Id"] = new SelectList(_context.Subject, "Id", "Discipline_Name");
             ViewData["Teacher_Id"] = new SelectList(_context.Teachers, "Id", "Id");
             return View();
         }
@@ -63,7 +71,7 @@ namespace ScheduleProg.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Group_Id,Subject_Id,Semester_Id,Teacher_Id,Pair_Time_Id")] Pare pare)
+        public async Task<IActionResult> Create([Bind("Id,Subject_Id,Semester_Id,Teacher_Id,Pair_Time_Id,Week_Day")] Pare pare)
         {
             if (ModelState.IsValid)
             {
@@ -73,7 +81,7 @@ namespace ScheduleProg.Controllers
             }
             ViewData["Pair_Time_Id"] = new SelectList(_context.PairTimes, "Id", "Id", pare.Pair_Time_Id);
             ViewData["Semester_Id"] = new SelectList(_context.Semesters, "Id", "Id", pare.Semester_Id);
-            ViewData["Subject_Id"] = new SelectList(_context.Set<Subject>(), "Id", "Id", pare.Subject_Id);
+            ViewData["Subject_Id"] = new SelectList(_context.Subject, "Id", "Id", pare.Subject_Id);
             ViewData["Teacher_Id"] = new SelectList(_context.Teachers, "Id", "Id", pare.Teacher_Id);
             return View(pare);
         }
@@ -93,7 +101,7 @@ namespace ScheduleProg.Controllers
             }
             ViewData["Pair_Time_Id"] = new SelectList(_context.PairTimes, "Id", "Id", pare.Pair_Time_Id);
             ViewData["Semester_Id"] = new SelectList(_context.Semesters, "Id", "Id", pare.Semester_Id);
-            ViewData["Subject_Id"] = new SelectList(_context.Set<Subject>(), "Id", "Id", pare.Subject_Id);
+            ViewData["Subject_Id"] = new SelectList(_context.Subject, "Id", "Id", pare.Subject_Id);
             ViewData["Teacher_Id"] = new SelectList(_context.Teachers, "Id", "Id", pare.Teacher_Id);
             return View(pare);
         }
@@ -103,7 +111,7 @@ namespace ScheduleProg.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Group_Id,Subject_Id,Semester_Id,Teacher_Id,Pair_Time_Id")] Pare pare)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Subject_Id,Semester_Id,Teacher_Id,Pair_Time_Id,Week_Day")] Pare pare)
         {
             if (id != pare.Id)
             {
@@ -132,7 +140,7 @@ namespace ScheduleProg.Controllers
             }
             ViewData["Pair_Time_Id"] = new SelectList(_context.PairTimes, "Id", "Id", pare.Pair_Time_Id);
             ViewData["Semester_Id"] = new SelectList(_context.Semesters, "Id", "Id", pare.Semester_Id);
-            ViewData["Subject_Id"] = new SelectList(_context.Set<Subject>(), "Id", "Id", pare.Subject_Id);
+            ViewData["Subject_Id"] = new SelectList(_context.Subject, "Id", "Id", pare.Subject_Id);
             ViewData["Teacher_Id"] = new SelectList(_context.Teachers, "Id", "Id", pare.Teacher_Id);
             return View(pare);
         }

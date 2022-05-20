@@ -4,7 +4,6 @@ namespace ScheduleProg.Models
     public class Pare
     {
         public int Id { get; set; }
-        public int Group_Id { get; set; }
 
         public int Subject_Id { get; set; }
 
@@ -12,6 +11,8 @@ namespace ScheduleProg.Models
         public int Teacher_Id { get; set; }
 
         public int Pair_Time_Id { get; set; }
+
+        public string Week_Day  { get; set; }
 
         [ValidateNever]
         public Semester Semester  { get; set; }

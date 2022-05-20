@@ -56,7 +56,7 @@ namespace ScheduleProg.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Begin_Date,End_Date")] Semester semester)
+        public async Task<IActionResult> Create([Bind("Id,Semester_Name,Begin_Date,End_Date")] Semester semester)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace ScheduleProg.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Begin_Date,End_Date")] Semester semester)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Semester_Name,Begin_Date,End_Date")] Semester semester)
         {
             if (id != semester.Id)
             {

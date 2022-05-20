@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<ScheduleProg.Models.Pare>
-
 @{
     ViewData["Title"] = "Index";
 }
@@ -13,7 +12,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Group_Id)
+                @Html.DisplayNameFor(model => model.Week_Day)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Semester)
@@ -24,9 +23,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.Teacher)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PairTime)
-            </th>
+           
+           
             <th></th>
         </tr>
     </thead>
@@ -34,19 +32,19 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Group_Id)
+                @Html.DisplayFor(modelItem => item.Week_Day=="monday")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Semester.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Subject.Id)
+                @Html.DisplayFor(modelItem => item.Subject.Discipline_Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Teacher.Id)
+                @Html.DisplayFor(modelItem => item.Teacher.First_Name) @Html.DisplayFor(modelItem => item.Teacher.Last_Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PairTime.Id)
+                @Html.DisplayFor(modelItem => item.PairTime.Begin_Time)-@Html.DisplayFor(modelItem => item.PairTime.End_Time)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

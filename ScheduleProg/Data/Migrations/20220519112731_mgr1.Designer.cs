@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ScheduleProg.Data;
 
@@ -11,9 +12,10 @@ using ScheduleProg.Data;
 namespace ScheduleProg.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220519112731_mgr1")]
+    partial class mgr1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -279,6 +281,9 @@ namespace ScheduleProg.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("Group_Id")
+                        .HasColumnType("int");
+
                     b.Property<int>("Pair_Time_Id")
                         .HasColumnType("int");
 
@@ -290,10 +295,6 @@ namespace ScheduleProg.Data.Migrations
 
                     b.Property<int>("Teacher_Id")
                         .HasColumnType("int");
-
-                    b.Property<string>("Week_Day")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
