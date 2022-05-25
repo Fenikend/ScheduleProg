@@ -13,7 +13,7 @@ namespace ScheduleProg.Controllers
     public class PareSubgroupsController : Controller
     {
         private readonly ApplicationDbContext _context;
-
+        
         public PareSubgroupsController(ApplicationDbContext context)
         {
             _context = context;
@@ -33,7 +33,7 @@ namespace ScheduleProg.Controllers
             {
                 return NotFound();
             }
-
+         
             var pareSubgroup = await _context.PareSubgroups
                 .Include(p => p.Pare)
                 .Include(p => p.Subgroup)
@@ -49,14 +49,22 @@ namespace ScheduleProg.Controllers
         // GET: PareSubgroups/Create
         public IActionResult Create()
         {
-            ViewData["Pare_Id"] = new SelectList(_context.Schedules, "Id", "Id");
+
+           var Ixem = _context.Schedules.Join(_context.Subject,
+           s => s.Subject_Id,
+           c => c.Id,
+           (s, c) => new {
+               Pare_id = s.Id,
+               Discipline_Name = c.Discipline_Name
+           }
+           );
+            ViewData["Pare_Id"] = new SelectList(_context.Schedules, "Id", "Dicipline_Name");
+         
             ViewData["Subgroup_Id"] = new SelectList(_context.Subgroups, "Id", "Id");
             return View();
         }
 
-        // POST: PareSubgroups/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+  
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Pare_Id,Subgroup_Id")] PareSubgroup pareSubgroup)

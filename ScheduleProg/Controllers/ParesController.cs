@@ -22,12 +22,45 @@ namespace ScheduleProg.Controllers
         // GET: Pares
         public async Task<IActionResult> Index()
         {
+            
+            ViewBag.monday_item= _context.Schedules
+                       .Include(p => p.PairTime)
+                       .Include(p => p.Semester)
+                       .Include(p => p.Subject)
+                       .Include(p => p.Teacher)
+            .Where(p=>p.Week_Day=="Понеділок");
+
+            ViewBag.tuesday_item = _context.Schedules
+                       .Include(p => p.PairTime)
+                       .Include(p => p.Semester)
+                       .Include(p => p.Subject)
+                       .Include(p => p.Teacher)
+            .Where(p => p.Week_Day == "Вівторок");
+
+            ViewBag.wednesday_item = _context.Schedules
+                       .Include(p => p.PairTime)
+                       .Include(p => p.Semester)
+                       .Include(p => p.Subject)
+                       .Include(p => p.Teacher)
+            .Where(p => p.Week_Day == "Середа");
+            ViewBag.thursday_item = _context.Schedules
+                       .Include(p => p.PairTime)
+                       .Include(p => p.Semester)
+                       .Include(p => p.Subject)
+                       .Include(p => p.Teacher)
+            .Where(p => p.Week_Day == "Четвер");
+            ViewBag.friday_item = _context.Schedules
+                       .Include(p => p.PairTime)
+                       .Include(p => p.Semester)
+                       .Include(p => p.Subject)
+                       .Include(p => p.Teacher)
+            .Where(p => p.Week_Day == "Четвер");
             var applicationDbContext = _context.Schedules
                        .Include(p => p.PairTime)
                        .Include(p => p.Semester)
                        .Include(p => p.Subject)
                        .Include(p => p.Teacher);
-                //.Where(p=>p.Week_Day=="monday");
+                //.Where(p=>p.Week_Day=="tuesday");
                 
             var p = applicationDbContext.ToList();
             return View(p);

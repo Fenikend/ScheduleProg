@@ -265,12 +265,12 @@ C:\Users\nichi\source\repos\ScheduleProg\ScheduleProg\bin\Debug\net6.0\runtimes\
 C:\Users\nichi\source\repos\ScheduleProg\ScheduleProg\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Users\nichi\source\repos\ScheduleProg\ScheduleProg\obj\Debug\net6.0\staticwebassets.build.json
 C:\Users\nichi\source\repos\ScheduleProg\ScheduleProg\obj\Debug\net6.0\staticwebassets.development.json
-C:\Users\nichi\source\repos\ScheduleProg\ScheduleProg\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\nichi\source\repos\ScheduleProg\ScheduleProg\obj\Debug\net6.0\scopedcss\bundle\ScheduleProg.styles.css
-C:\Users\nichi\source\repos\ScheduleProg\ScheduleProg\obj\Debug\net6.0\scopedcss\projectbundle\ScheduleProg.bundle.scp.css
 C:\Users\nichi\source\repos\ScheduleProg\ScheduleProg\obj\Debug\net6.0\ScheduleProg.csproj.CopyComplete
 C:\Users\nichi\source\repos\ScheduleProg\ScheduleProg\obj\Debug\net6.0\ScheduleProg.dll
 C:\Users\nichi\source\repos\ScheduleProg\ScheduleProg\obj\Debug\net6.0\refint\ScheduleProg.dll
 C:\Users\nichi\source\repos\ScheduleProg\ScheduleProg\obj\Debug\net6.0\ScheduleProg.pdb
 C:\Users\nichi\source\repos\ScheduleProg\ScheduleProg\obj\Debug\net6.0\ScheduleProg.genruntimeconfig.cache
 C:\Users\nichi\source\repos\ScheduleProg\ScheduleProg\obj\Debug\net6.0\ref\ScheduleProg.dll
+C:\Users\nichi\source\repos\ScheduleProg\ScheduleProg\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\nichi\source\repos\ScheduleProg\ScheduleProg\obj\Debug\net6.0\scopedcss\projectbundle\ScheduleProg.bundle.scp.css

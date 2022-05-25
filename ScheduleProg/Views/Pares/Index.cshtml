@@ -9,49 +9,31 @@
     <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Week_Day)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Semester)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Subject)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Teacher)
-            </th>
-           
-           
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Week_Day=="monday")
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Semester.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Subject.Discipline_Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Teacher.First_Name) @Html.DisplayFor(modelItem => item.Teacher.Last_Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PairTime.Begin_Time)-@Html.DisplayFor(modelItem => item.PairTime.End_Time)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+@foreach (var item in ViewBag.monday_item) {
+    <div class="card-columns border">
+        
+                @item.Week_Day
+    </div>
+     <div class="card-columns border">
+          @item.Semester.Id
+    </div>
+     <div class="card-columns border">
+          @item.Subject.Discipline_Name
+    </div>
+     <div class="card-columns border">
+         
+                @item.Teacher.First_Name @item.Teacher.Last_Name
+    </div>
+     <div class="card-columns border">
+         
+              @item.PairTime.Begin_Time - @item.PairTime.End_Time
+          
+    </div>
+       
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+     
 }
     </tbody>
 </table>

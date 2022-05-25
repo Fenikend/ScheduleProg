@@ -21,6 +21,8 @@ namespace ScheduleProg.Data
 
         public DbSet<Potok> Potoks { get; set; }
 
+        public DbSet<Pare> Pares { get; set; }
+        public DbSet<ScheduleProg.Models.Subject> Subject { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -103,6 +105,6 @@ namespace ScheduleProg.Data
 
         }
 
-        public DbSet<ScheduleProg.Models.Subject>? Subject { get; set; }
+        
     }
 }
