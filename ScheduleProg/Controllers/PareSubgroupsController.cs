@@ -58,7 +58,8 @@ namespace ScheduleProg.Controllers
                Discipline_Name = c.Discipline_Name
            }
            );
-            ViewData["Pare_Id"] = new SelectList(_context.Schedules, "Id", "Dicipline_Name");
+
+            ViewData["Pare_Id"] = new SelectList(_context.Schedules , "Id", "Id");
          
             ViewData["Subgroup_Id"] = new SelectList(_context.Subgroups, "Id", "Id");
             return View();

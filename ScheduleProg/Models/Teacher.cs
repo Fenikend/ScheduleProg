@@ -9,6 +9,8 @@ namespace ScheduleProg.Models
 
         public string Last_Name { get; set; }
 
+        [ValidateNever]
+        public string Full_name { get { return (First_Name + Last_Name); } }
         /*public int User_Id { get; set; }*/
         [ValidateNever]
         public List<Pare> Pares { get; set; }

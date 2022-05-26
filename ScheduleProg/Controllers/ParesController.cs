@@ -92,10 +92,16 @@ namespace ScheduleProg.Controllers
         // GET: Pares/Create
         public IActionResult Create()
         {
+               
             ViewData["Pair_Time_Id"] = new SelectList(_context.PairTimes, "Id", "Id");
-            ViewData["Semester_Id"] = new SelectList(_context.Semesters, "Id", "Id");
-            ViewData["Subject_Id"] = new SelectList(_context.Subject, "Id", "Discipline_Name");
-            ViewData["Teacher_Id"] = new SelectList(_context.Teachers, "Id", "Id");
+            var view1 = new SelectList(_context.Subject, "Id", "Discipline_Name");
+            var view2 = new SelectList(_context.Semesters, "Id", "Id");
+            var view3 = new SelectList(_context.Teachers, "Id", "Full_Name");
+            //ViewData["Subject_Id"] = new SelectList(_context.Subject, "Id", "Discipline_Name");
+           
+            ViewData["Subject_Id"]= view1;
+            ViewData["Semester_Id"] = view2;
+            ViewData["Teacher_Id"] = view3;
             return View();
         }
 
