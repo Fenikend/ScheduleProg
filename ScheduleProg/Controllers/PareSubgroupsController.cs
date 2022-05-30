@@ -49,18 +49,10 @@ namespace ScheduleProg.Controllers
         // GET: PareSubgroups/Create
         public IActionResult Create()
         {
+            var result =_context.Schedules.FromSqlRaw("Select * from Pare where Teacher_Id=2").ToList();
+            ViewData["Pare_Id"] = new SelectList(_context.Schedules.Include(s=>s.Subject), "Id", "Discipline_Name");
+            
 
-           var Ixem = _context.Schedules.Join(_context.Subject,
-           s => s.Subject_Id,
-           c => c.Id,
-           (s, c) => new {
-               Pare_id = s.Id,
-               Discipline_Name = c.Discipline_Name
-           }
-           );
-
-            ViewData["Pare_Id"] = new SelectList(_context.Schedules , "Id", "Id");
-         
             ViewData["Subgroup_Id"] = new SelectList(_context.Subgroups, "Id", "Id");
             return View();
         }

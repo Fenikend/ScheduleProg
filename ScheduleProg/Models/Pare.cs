@@ -14,6 +14,7 @@ namespace ScheduleProg.Models
 
         public string Week_Day  { get; set; }
 
+        
         [ValidateNever]
         public Semester Semester  { get; set; }
         [ValidateNever]
@@ -24,5 +25,8 @@ namespace ScheduleProg.Models
         public Teacher Teacher{ get; set; }
         [ValidateNever]
         public PairTime PairTime{ get; set; }
+
+        [ValidateNever]
+        public List<Teacher> Teachers { get; set; }
     }
 }

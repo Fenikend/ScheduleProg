@@ -1,4 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using ScheduleProg.Data;
 using ScheduleProg.Models;
 using System.Diagnostics;
 
@@ -14,7 +21,7 @@ namespace ScheduleProg.Controllers
         }
 
         public IActionResult Index()
-        {
+        {   
             return View();
         }
 
