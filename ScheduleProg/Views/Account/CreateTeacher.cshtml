@@ -1,0 +1,38 @@
+﻿@model ScheduleProg.Models.CreateTeacher
+
+@{
+    ViewData["Title"] = "CreateTeacher";
+   
+}
+<h2>Регистрация нового пользователя</h2>
+<form method="post" asp-controller="Account" asp-action="CreateTeacher">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <label asp-for="First_Name"></label><br />
+        <input asp-for="First_Name" />
+        <span asp-validation-for="First_Name"></span>
+    </div>
+    <div>
+        <label asp-for="Last_Name"></label><br />
+        <input asp-for="Last_Name" />
+        <span asp-validation-for="Last_Name"></span>
+    </div>
+    
+    <div>
+        <label asp-for="Email"></label><br />
+        <input asp-for="Email" />
+        <span asp-validation-for="Email"></span>
+    </div>
+    <div>
+        <label asp-for="Password"></label><br />
+        <input asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+    </div>
+   
+    <div>
+        <input type="submit" value="Регистрация" />
+    </div>
+</form>
+@section scripts{
+    // Add something here
+}

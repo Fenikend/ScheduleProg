@@ -50,9 +50,13 @@ namespace ScheduleProg.Controllers
         public IActionResult Create()
         {
             var result =_context.Schedules.FromSqlRaw("Select * from Pare where Teacher_Id=2").ToList();
-            ViewData["Pare_Id"] = new SelectList(_context.Schedules.Include(s=>s.Subject), "Id", "Discipline_Name");
-            
+            ViewData["Pare_Id"] = new SelectList(_context.Schedules
+                .Include(s => s.Subject)
+                .Include(s=>s.PairTime)
+                , "Id", "Description")
+            {
 
+            };
             ViewData["Subgroup_Id"] = new SelectList(_context.Subgroups, "Id", "Id");
             return View();
         }

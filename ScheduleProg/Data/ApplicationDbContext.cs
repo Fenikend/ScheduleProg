@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ScheduleProg.Models;
 
 namespace ScheduleProg.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<User>
     {
         public DbSet<Group> Groups { get; set; }
         public DbSet<PairTime> PairTimes { get; set; }
@@ -15,9 +16,9 @@ namespace ScheduleProg.Data
 
         public DbSet<Teacher> Teachers { get; set; }
 
-        public DbSet<Subgroup> Subgroups{ get; set; }
+        public DbSet<Subgroup> Subgroups { get; set; }
 
-        public DbSet<PareSubgroup> PareSubgroups { get; set; } 
+        public DbSet<PareSubgroup> PareSubgroups { get; set; }
 
         public DbSet<Potok> Potoks { get; set; }
 
@@ -29,8 +30,15 @@ namespace ScheduleProg.Data
         {
         }
 
+
+
+
+       
+
+
         protected override void OnModelCreating(ModelBuilder builder)
-        {  /*b*/
+        {
+            /*b*/
             base.OnModelCreating(builder);
             builder.Entity<Semester>()
             .HasMany<Pare>(semester => semester.Pares)
@@ -94,6 +102,16 @@ namespace ScheduleProg.Data
             .HasMany<Student>(s => s.Students)
             .WithOne(g => g.Subgroup)
             .HasForeignKey(g => g.Subgroup_Id);
+
+            builder.Entity<Student>()
+            .HasOne(a => a.User)
+            .WithOne(b => b.Student)
+            .HasForeignKey<Student>(b => b.User_Id);
+
+            builder.Entity<Teacher>()
+            .HasOne(a => a.User)
+            .WithOne(b => b.Teacher)
+            .HasForeignKey<Teacher>(b => b.User_Id);
 
 
 

@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using ScheduleProg.Data;
 using ScheduleProg.Models;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ScheduleProg.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -19,9 +21,10 @@ namespace ScheduleProg.Controllers
         {
             _logger = logger;
         }
-
+        
         public IActionResult Index()
-        {   
+        {
+            
             return View();
         }
 

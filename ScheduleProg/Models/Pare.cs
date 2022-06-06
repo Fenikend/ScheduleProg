@@ -14,6 +14,10 @@ namespace ScheduleProg.Models
 
         public string Week_Day  { get; set; }
 
+     
+
+        [ValidateNever]
+        public string Description { get { return (PairTime.Full_Time+' '+Week_Day + ' '  + Subject.Discipline_Name ); } }
         
         [ValidateNever]
         public Semester Semester  { get; set; }
