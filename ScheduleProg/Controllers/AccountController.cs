@@ -20,6 +20,7 @@ namespace ScheduleProg.Controllers
             _signInManager = signInManager;
             _context=context;
         }
+
         public IActionResult Index()
         {
             ViewData["Subgroup_Id"] = new SelectList(_context.Subgroups, "Id", "Subgr_Name");
@@ -27,10 +28,10 @@ namespace ScheduleProg.Controllers
         }
 
 
-        [HttpGet]
+       /* [HttpGet]
         public IActionResult Login(string returnUrl = null)
         {
-            return View(new LoginViewModel { ReturnUrl = returnUrl });
+            return View();
 
         }
 
@@ -70,7 +71,7 @@ namespace ScheduleProg.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
-
+*/
 
         /// <returns>
 
