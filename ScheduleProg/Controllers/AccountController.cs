@@ -94,11 +94,12 @@ namespace ScheduleProg.Controllers
 
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, "Студент");
                     Student student = new Student { First_Name = model.First_Name, Last_Name = model.Last_Name, Subgroup_Id = model.Subgroup_Id,User_Id= user.Id };
                     _context.Add(student);
                     await _context.SaveChangesAsync();
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index","Home");
                 }
                 else
                 {
@@ -108,7 +109,7 @@ namespace ScheduleProg.Controllers
                     }
                 }
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
         [HttpGet]
         public IActionResult CreateTeacher()
@@ -127,11 +128,12 @@ namespace ScheduleProg.Controllers
 
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, "Вчитель");
                     Teacher teacher= new Teacher{ First_Name = model.First_Name, Last_Name = model.Last_Name, User_Id = user.Id };
                     _context.Add(teacher);
                     await _context.SaveChangesAsync();
 
-                    return RedirectToAction("CreateTeacher");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -141,7 +143,7 @@ namespace ScheduleProg.Controllers
                     }
                 }
             }
-            return RedirectToAction("CreateTeacher");
+            return RedirectToAction("Index", "Home");
         }
 
 
