@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ScheduleProg;
 using ScheduleProg.Data;
@@ -16,12 +17,17 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddHealthChecks();
-builder.Services.AddIdentity<User, IdentityRole>()
-    .AddRoles<IdentityRole>()
-    .AddRoleManager<RoleManager<IdentityRole>>()
+builder.Services.AddIdentity<User, Roles>()
+    .AddRoles<Roles>()
+    .AddRoleManager<RoleManager<Roles>>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                    options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                });
 
 var app = builder.Build();
 

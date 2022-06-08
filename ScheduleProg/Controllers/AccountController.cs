@@ -5,6 +5,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ScheduleProg.Data;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ScheduleProg.Controllers
 {
@@ -24,58 +28,49 @@ namespace ScheduleProg.Controllers
         public IActionResult Index()
         {
             ViewData["Subgroup_Id"] = new SelectList(_context.Subgroups, "Id", "Subgr_Name");
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
-
-       /* [HttpGet]
-        public IActionResult Login(string returnUrl = null)
+        //SD
+        [HttpGet]
+        public IActionResult Login()
         {
             return View();
-
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var result =
-                    await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
-                if (result.Succeeded)
+                User user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
+                if (user != null)
                 {
-                    // проверяем, принадлежит ли URL приложению
-                    if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
-                    {
-                        return Redirect(model.ReturnUrl);
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                    await Authenticate(model.Email); // аутентификация
+
+                    return RedirectToAction("Index", "Home");
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Неправильний логiн або пароль");
-                }
+                ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
-            return RedirectToAction("Index", "Home");
+            return View(model);
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Logout()
-        {
-            // удаляем аутентификационные куки
-            await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
-        }
-*/
-
         /// <returns>
 
+        ///Auth
+        private async Task Authenticate(string userName)
+        {
+            // создаем один claim
+            var claims = new List<Claim>
+        {
+        new Claim(ClaimsIdentity.DefaultNameClaimType, userName)
+        };
+            // создаем объект ClaimsIdentity
+            ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+            // установка аутентификационных куки
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+        }
 
+        ///
         [HttpGet]
         public IActionResult CreateStudent()
         {

@@ -16,15 +16,15 @@ namespace ScheduleProg
 
             if (await roleManager.FindByNameAsync("Адміністратор") == null)
             {
-                await roleManager.CreateAsync(new IdentityRole("Адміністратор"));
+                await roleManager.CreateAsync(new Roles { RoleName="Адміністратор" });
             }
             if (await roleManager.FindByNameAsync("Вчитель") == null)
             {
-                await roleManager.CreateAsync(new IdentityRole("Вчитель"));
+                await roleManager.CreateAsync(new Roles { RoleName = "Вчитель" });
             }
             if (await roleManager.FindByNameAsync("Студент") == null)
             {
-                await roleManager.CreateAsync(new IdentityRole("Студент"));
+                await roleManager.CreateAsync(new Roles { RoleName = "Студент" });
             }
             if (await userManager.FindByNameAsync(adminEmail) == null)
             {

@@ -11,13 +11,13 @@ namespace ScheduleProg.Models
         
         public string? Last_Name { get; set; }
 
+        public string Password { get; set; }
+
         [ValidateNever]
         public Student Student { get; set; }
         [ValidateNever]
         public Teacher Teacher{ get; set; }
 
-       
-   
 
     }
 }
