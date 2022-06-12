@@ -3,6 +3,7 @@ namespace ScheduleProg.Models
 {
     public class Pare
     {
+        
         public int Id { get; set; }
 
         public int Subject_Id { get; set; }

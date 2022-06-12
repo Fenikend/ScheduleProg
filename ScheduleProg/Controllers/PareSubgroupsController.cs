@@ -19,12 +19,21 @@ namespace ScheduleProg.Controllers
             _context = context;
         }
 
-        // GET: PareSubgroups
-        public async Task<IActionResult> Index()
+        [HttpGet]
+        public  IActionResult Index()
         {
-            var applicationDbContext = _context.PareSubgroups.Include(p => p.Pare).Include(p => p.Subgroup);
-            return View(await applicationDbContext.ToListAsync());
+            /*var applicationDbContext = _context.PareSubgroups.Include(p => p.Pare).Include(p => p.Subgroup);
+            return View(await applicationDbContext.ToListAsync());*/
+            return View();
         }
+        // GET: PareSubgroups
+      
+        /*public async Task<IActionResult> Index(string WeekDay)
+        {
+            *//*var applicationDbContext = _context.PareSubgroups.Include(p => p.Pare).Include(p => p.Subgroup);
+            return View(await applicationDbContext.ToListAsync());*//*
+            return Create(WeekDay);
+        }*/
 
         // GET: PareSubgroups/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -45,18 +54,23 @@ namespace ScheduleProg.Controllers
 
             return View(pareSubgroup);
         }
+       
 
+        public async Task<IActionResult> GetDay(string WeekDay) {
+
+            return Create(WeekDay);
+        }
+        [HttpGet]
         // GET: PareSubgroups/Create
-        public IActionResult Create()
+        public IActionResult Create(string Week_Day)
         {
-            var result =_context.Schedules.FromSqlRaw("Select * from Pare where Teacher_Id=2").ToList();
+            //var result =_context.Schedules.FromSqlRaw("Select * from Pare where Teacher_Id=2").ToList();
             ViewData["Pare_Id"] = new SelectList(_context.Schedules
                 .Include(s => s.Subject)
-                .Include(s=>s.PairTime)
-                , "Id", "Description")
-            {
+                .Include(s => s.PairTime)
+                .Where(s=>s.Week_Day== Week_Day)
+                , "Id", "Description");
 
-            };
             ViewData["Subgroup_Id"] = new SelectList(_context.Subgroups, "Id", "Id");
             return View();
         }
@@ -64,11 +78,23 @@ namespace ScheduleProg.Controllers
   
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Pare_Id,Subgroup_Id")] PareSubgroup pareSubgroup)
+        public async Task<IActionResult> Create(
+            [Bind("Pare_Id,Subgroup_Id")] PareSubgroup pareSubgroup,
+            [Bind("Pare_Id,Subgroup_Id")] PareSubgroup pareSubgroup2,
+            [Bind("Pare_Id,Subgroup_Id")] PareSubgroup pareSubgroup3,
+            [Bind("Pare_Id,Subgroup_Id")] PareSubgroup pareSubgroup4,
+            [Bind("Pare_Id,Subgroup_Id")] PareSubgroup pareSubgroup5,
+            [Bind("Pare_Id,Subgroup_Id")] PareSubgroup pareSubgroup6
+            )
         {
             if (ModelState.IsValid)
             {
                 _context.Add(pareSubgroup);
+                _context.Add(pareSubgroup2);
+                _context.Add(pareSubgroup3);
+                _context.Add(pareSubgroup4);
+                _context.Add(pareSubgroup5);
+                _context.Add(pareSubgroup6);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

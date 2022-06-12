@@ -1,41 +1,25 @@
-﻿@model IEnumerable<ScheduleProg.Models.PareSubgroup>
+﻿@model ScheduleProg.Models.PareSubgroup
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>SetDate</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Pare)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Subgroup)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pare.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Subgroup.Id)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<h4>Potok</h4>
+<hr />
+<div class="row">
+    <div class="col">
+        <form method="get" style="width:100%" action="~/PareSubgroups/Create">
+        <input type="submit" id="Week_Day" name="Week_Day" value="Понеділок" class="btn btn-primary"></input>
+        <input type="submit" id="Week_Day" name="Week_Day" value="Вівторок" class="btn btn-primary"></input>
+        <input type="submit" id="Week_Day" name="Week_Day" value="Середа" class="btn btn-primary"></input>
+        <input type="submit" id="Week_Day" name="Week_Day" value="Четвер" class="btn btn-primary"></input>
+        <input type="submit" id="Week_Day" name="Week_Day" value="П'ятниця" class="btn btn-primary"></input
+        </form>
+       
+    </div>
+</div>
+
+
+

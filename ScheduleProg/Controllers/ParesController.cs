@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +12,7 @@ using ScheduleProg.Models;
 
 namespace ScheduleProg.Controllers
 {
+    [Authorize]
     public class ParesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,75 +25,113 @@ namespace ScheduleProg.Controllers
         // GET: Pares
         public async Task<IActionResult> Index()
         {
-            
-            ViewBag.monday_item= _context.Schedules
-                       .Include(p => p.PairTime)
-                       .Include(p => p.Semester)
-                       .Include(p => p.Subject)
-                       .Include(p => p.Teacher)
-            .Where(p=>p.Week_Day=="Понеділок");
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            ViewBag.tuesday_item = _context.Schedules
-                       .Include(p => p.PairTime)
-                       .Include(p => p.Semester)
-                       .Include(p => p.Subject)
-                       .Include(p => p.Teacher)
-            .Where(p => p.Week_Day == "Вівторок");
+            //var StudId = await _context.Students.FindAsync(userId);
 
-            ViewBag.wednesday_item = _context.Schedules
-                       .Include(p => p.PairTime)
-                       .Include(p => p.Semester)
-                       .Include(p => p.Subject)
-                       .Include(p => p.Teacher)
-            .Where(p => p.Week_Day == "Середа");
+            var TeacherId = _context.Teachers.Where(p => p.User_Id == userId).Select(p => p.Id).FirstOrDefault();
+            var StudentSubgrId = _context.Students.Where(p => p.User_Id == userId).Select(p => p.Subgroup_Id).FirstOrDefault();
+            var CurPareIDs = _context.PareSubgroups.Where(p => p.Subgroup_Id == StudentSubgrId).Select(p => p.Pare_Id).ToList();
+            if (TeacherId != 0)
+            {
 
-            ViewBag.thursday_item = _context.Schedules
-                       .Include(p => p.PairTime)
-                       .Include(p => p.Semester)
-                       .Include(p => p.Subject)
-                       .Include(p => p.Teacher)
-            .Where(p => p.Week_Day == "Четвер");
+                ViewBag.monday_item = _context.Schedules
+                           .Include(p => p.PairTime)
+                           .Include(p => p.Semester)
+                           .Include(p => p.Subject)
+                           .Include(p => p.Teacher)
+                .Where(p => p.Teacher_Id ==TeacherId);
 
-            ViewBag.friday_item = _context.Schedules
-                       .Include(p => p.PairTime)
-                       .Include(p => p.Semester)
-                       .Include(p => p.Subject)
-                       .Include(p => p.Teacher)
-            .Where(p => p.Week_Day == "Четвер");
-            var applicationDbContext = _context.Schedules
-                       .Include(p => p.PairTime)
-                       .Include(p => p.Semester)
-                       .Include(p => p.Subject)
-                       .Include(p => p.Teacher);
-                //.Where(p=>p.Week_Day=="tuesday");
+                ViewBag.tuesday_item = _context.Schedules
+                           .Include(p => p.PairTime)
+                           .Include(p => p.Semester)
+                           .Include(p => p.Subject)
+                           .Include(p => p.Teacher)
+                .Where(p => p.Week_Day == "Вівторок")
+                .Where(p => p.Teacher_Id == TeacherId);
+
+                ViewBag.wednesday_item = _context.Schedules
+                           .Include(p => p.PairTime)
+                           .Include(p => p.Semester)
+                           .Include(p => p.Subject)
+                           .Include(p => p.Teacher)
+                .Where(p => p.Week_Day == "Середа")
+                .Where(p => p.Teacher_Id == TeacherId);
+
+                ViewBag.thursday_item = _context.Schedules
+                               .Include(p => p.PairTime)
+                               .Include(p => p.Semester)
+                               .Include(p => p.Subject)
+                               .Include(p => p.Teacher)
+                    .Where(p => p.Week_Day == "Четвер")
+                    .Where(p => p.Teacher_Id == TeacherId);
+
+                ViewBag.friday_item = _context.Schedules
+                               .Include(p => p.PairTime)
+                               .Include(p => p.Semester)
+                               .Include(p => p.Subject)
+                               .Include(p => p.Teacher)
+                    .Where(p => p.Week_Day == "П'ятниця")
+                    .Where(p => p.Teacher_Id == TeacherId);
+            }
+            if (StudentSubgrId != 0)
+            {
+              //var Cont = _context.Pares.FromSqlInterpolated($"Select * from Pare Where Week_Day=N'Понеділок' and Id in{CurPareID}");
                 
+
+                ViewBag.monday_item = _context.Schedules
+                               .Include(p => p.PairTime)
+                               .Include(p => p.Semester)
+                               .Include(p => p.Subject)
+                               .Include(p => p.Teacher)
+                    .Where(p => p.Week_Day == "Понеділок")
+                    .Where(p => CurPareIDs.Contains(p.Id));
+
+                ViewBag.tuesday_item = _context.Schedules
+                               .Include(p => p.PairTime)
+                               .Include(p => p.Semester)
+                               .Include(p => p.Subject)
+                               .Include(p => p.Teacher)
+                    .Where(p => p.Week_Day == "Вівторок")
+                    .Where(p => CurPareIDs.Contains(p.Id));
+
+                ViewBag.wednesday_item = _context.Schedules
+                               .Include(p => p.PairTime)
+                               .Include(p => p.Semester)
+                               .Include(p => p.Subject)
+                               .Include(p => p.Teacher)
+                    .Where(p => p.Week_Day == "Середа")
+                    .Where(p => CurPareIDs.Contains(p.Id));
+
+                ViewBag.thursday_item = _context.Schedules
+                               .Include(p => p.PairTime)
+                               .Include(p => p.Semester)
+                               .Include(p => p.Subject)
+                               .Include(p => p.Teacher)
+                    .Where(p => p.Week_Day == "Четвер")
+                    .Where(p => CurPareIDs.Contains(p.Id));
+
+                ViewBag.friday_item = _context.Schedules
+                               .Include(p => p.PairTime)
+                               .Include(p => p.Semester)
+                               .Include(p => p.Subject)
+                               .Include(p => p.Teacher)
+                    .Where(p => p.Week_Day == "П'ятниця")
+                    .Where(p => CurPareIDs.Contains(p.Id));
+            }
+            var applicationDbContext = _context.Schedules
+                           .Include(p => p.PairTime)
+                           .Include(p => p.Semester)
+                           .Include(p => p.Subject)
+                           .Include(p => p.Teacher);
+            //.Where(p=>p.Week_Day=="tuesday");
             var p = applicationDbContext.ToList();
             return View();
         }
 
 
         // GET: Pares/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Schedules == null)
-            {
-                return NotFound();
-            }
-
-            var pare = await _context.Schedules
-                .Include(p => p.PairTime)
-                .Include(p => p.Semester)
-                .Include(p => p.Subject)
-                .Include(p => p.Teacher)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (pare == null)
-            {
-                return NotFound();
-            }
-
-            return View(pare);
-        }
-
+       
         // GET: Pares/Create
         public IActionResult Create()
         {

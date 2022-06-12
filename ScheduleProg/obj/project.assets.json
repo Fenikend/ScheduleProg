@@ -10072,11 +10072,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nichi\\source\\repos\\ScheduleProg\\ScheduleProg\\ScheduleProg.csproj",
+      "projectUniqueName": "D:\\ScheduleProg-test_ta\\ScheduleProg\\ScheduleProg.csproj",
       "projectName": "ScheduleProg",
-      "projectPath": "C:\\Users\\nichi\\source\\repos\\ScheduleProg\\ScheduleProg\\ScheduleProg.csproj",
+      "projectPath": "D:\\ScheduleProg-test_ta\\ScheduleProg\\ScheduleProg.csproj",
       "packagesPath": "C:\\Users\\nichi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nichi\\source\\repos\\ScheduleProg\\ScheduleProg\\obj\\",
+      "outputPath": "D:\\ScheduleProg-test_ta\\ScheduleProg\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

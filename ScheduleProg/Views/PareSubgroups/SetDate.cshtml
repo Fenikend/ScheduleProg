@@ -1,0 +1,25 @@
+﻿@model ScheduleProg.Models.Pare
+
+@{
+    ViewData["Title"] = "";
+}
+
+<h1>SetDate</h1>
+
+<h4>Potok</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="GetDay" asp-controller="PareSubgroups">
+           <label asp-for="Week_Day" class="control-label"></label>
+            <select asp-for="Week_Day" class ="form-control" asp-items="ViewBag.Week_Day"></select>
+           
+        </form>
+         <a asp-action="GetDay">Create</a>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

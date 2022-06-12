@@ -27,23 +27,7 @@ namespace ScheduleProg.Controllers
                           Problem("Entity set 'ApplicationDbContext.PairTimes'  is null.");
         }
 
-        // GET: PairTimes/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.PairTimes == null)
-            {
-                return NotFound();
-            }
-
-            var pairTime = await _context.PairTimes
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (pairTime == null)
-            {
-                return NotFound();
-            }
-
-            return View(pairTime);
-        }
+        
 
         // GET: PairTimes/Create
         public IActionResult Create()

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AIM+WI2/RNEz0J3RmFRGMaYPPhT4loTJmh8v1/yD0vfIdo/2FiBYZPghuAHpn21TII63fp3felIzeInBud4teg==",
+  "dgSpecHash": "Kf798H5klY6gJWV+Adm3CNg9o2Z4aXvYxTZby1y1yJPCwLMEBfB8jEhabgoFJVstSZoVxTEkVv1w1urPLjZyRQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\nichi\\source\\repos\\ScheduleProg\\ScheduleProg\\ScheduleProg.csproj",
+  "projectFilePath": "D:\\ScheduleProg-test_ta\\ScheduleProg\\ScheduleProg.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nichi\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\nichi\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",

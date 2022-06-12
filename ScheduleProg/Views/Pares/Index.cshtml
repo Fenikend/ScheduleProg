@@ -3,37 +3,208 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<style>
+    
+.week-day{
+ 
+  width:5%;
+  margin:0;
+  padding:0;
+}
+.week-day-text{
+     text-align: center;
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+}
+.pare-body{
+flex:9 0 0%;
+}
+.row
+{
+    --bs-gutter-x: 0;
+    --bs-gutter-:0;
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+}
+.centred-text{
+justify-content: center;
+text-align: center;
+}
+
+.schedule-body{
+    width:90%;
+}
+ 
+</style>
+
+
+<div class="container">
+
+    <h1 class="centred-text">Розклад</h1>
+    <div class="row footer">
+    <div class="row week-day border centred-text" >День</div>
+    <div class="row  schedule-body">
+    <div class="row">
+    <div class="col border centred-text ">
+         Час
+          
+    </div>
+     <div class="col pare-body border centred-text ">
+          Розклад занятть
+    </div>
+     <div class="col border centred-text">
+          Час
+    </div>
+    </div>
+                
+     
+</div >
+ <div class="row week-day centred-text border" >День</div>
+</div>
+
+
+
+
+<div class="row">
+    <div class="row week-day week-day-text centred-text border" >Понеділок</div>
+    <div class="row  schedule-body">
 @foreach (var item in ViewBag.monday_item) {
-    <div class="card-columns border">
-        
-                @item.Week_Day
-    </div>
-     <div class="card-columns border">
-          @item.Semester.Id
-    </div>
-     <div class="card-columns border">
-          @item.Subject.Discipline_Name
-    </div>
-     <div class="card-columns border">
-         
-                @item.Teacher.First_Name @item.Teacher.Last_Name
-    </div>
-     <div class="card-columns border">
+    <div class="row">
+    <div class="col border ">
          
               @item.PairTime.Begin_Time - @item.PairTime.End_Time
           
     </div>
-       
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+     <div class="col pare-body border">
+          @item.Semester.Semester_Name
+          @item.Subject.Discipline_Name
+                @item.Teacher.First_Name @item.Teacher.Last_Name
+    </div>
+     <div class="col border ">
+         
+              @item.PairTime.Begin_Time - @item.PairTime.End_Time
+          
+    </div>
+    </div>
+                
      
-}
-    </tbody>
-</table>
+}</div >
+ <div class="row week-day week-day-text centred-text border" >Понеділок</div>
+</div>
+<div class="row">
+    <div class="row week-day week-day-text centred-text border" >Вівторок</div>
+    <div class="row  schedule-body">
+            @foreach (var item in ViewBag.tuesday_item) {
+
+                    <div class="row">
+                        <div class="col border ">
+
+                            @item.PairTime.Begin_Time - @item.PairTime.End_Time
+
+                        </div>
+                        <div class="col border pare-body ">
+                            @item.Semester.Semester_Name
+                            @item.Subject.Discipline_Name
+                            @item.Teacher.First_Name @item.Teacher.Last_Name
+                        </div>
+                        <div class="col border pare-time ">
+
+                            @item.PairTime.Begin_Time - @item.PairTime.End_Time
+
+                        </div>
+                    </div>
+                
+                
+
+}</div >
+ <div class="row week-day week-day-text centred-text border" >Вівторок</div>
+</div>
+
+<div class="row">
+    <div class="row week-day week-day-text centred-text border" >Середа</div>
+    <div class="row  schedule-body">
+            @foreach (var item in ViewBag.wednesday_item) {
+
+                    <div class="row">
+                        <div class="col border ">
+
+                            @item.PairTime.Begin_Time - @item.PairTime.End_Time
+
+                        </div>
+                        <div class="col border pare-body ">
+                            @item.Semester.Semester_Name
+                            @item.Subject.Discipline_Name
+                            @item.Teacher.First_Name @item.Teacher.Last_Name
+                        </div>
+                        <div class="col border pare-time ">
+
+                            @item.PairTime.Begin_Time - @item.PairTime.End_Time
+
+                        </div>
+                    </div>
+                
+                
+
+}</div >
+ <div class="row week-day week-day-text centred-text border" >Середа</div>
+</div>
+
+
+<div class="row">
+    <div class="row week-day week-day-text centred-text border" >Четвер</div>
+    <div class="row  schedule-body">
+            @foreach (var item in ViewBag.thursday_item) {
+
+                    <div class="row">
+                        <div class="col border ">
+
+                            @item.PairTime.Begin_Time - @item.PairTime.End_Time
+
+                        </div>
+                        <div class="col border pare-body ">
+                            @item.Semester.Semester_Name
+                            @item.Subject.Discipline_Name
+                            @item.Teacher.First_Name @item.Teacher.Last_Name
+                        </div>
+                        <div class="col border pare-time ">
+
+                            @item.PairTime.Begin_Time - @item.PairTime.End_Time
+
+                        </div>
+                    </div>
+                
+                
+
+}</div >
+ <div class="row week-day week-day-text centred-text border" >Четвер</div>
+</div>
+
+
+<div class="row">
+    <div class="row week-day week-day-text centred-text border" >П'ятниця</div>
+    <div class="row  schedule-body">
+            @foreach (var item in ViewBag.friday_item   ) {
+
+                    <div class="row">
+                        <div class="col border ">
+
+                            @item.PairTime.Begin_Time - @item.PairTime.End_Time
+
+                        </div>
+                        <div class="col border pare-body ">
+                            @item.Semester.Semester_Name
+                            @item.Subject.Discipline_Name
+                            @item.Teacher.First_Name @item.Teacher.Last_Name
+                        </div>
+                        <div class="col border pare-time ">
+
+                            @item.PairTime.Begin_Time - @item.PairTime.End_Time
+
+                        </div>
+                    </div>
+                
+                
+
+}</div >
+ <div class="row week-day week-day-text centred-text border" >П'ятниця</div>
+</div>
+<div class="container">

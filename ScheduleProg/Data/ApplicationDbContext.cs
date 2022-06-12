@@ -5,6 +5,7 @@ using ScheduleProg.Models;
 
 namespace ScheduleProg.Data
 {
+
     public class ApplicationDbContext : IdentityDbContext<User>
     {
         public DbSet<Group> Groups { get; set; }
